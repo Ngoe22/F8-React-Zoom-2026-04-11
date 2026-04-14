@@ -267,7 +267,7 @@ function editById(array: User[], id: number, newItem: User): User[] {
     return array.map((item) => (item.id !== id ? item : newItem));
 }
 
-// // F8-React-Zoom-2026-04-11 | code gốc bên dưới  , trên là bản đã được AI biên dịch qua TS không đổi logic 
+// // F8-React-Zoom-2026-04-11 | code gốc bên dưới  , trên là bản đã được AI biên dịch qua TS không đổi logic
 
 // import { useState, useEffect } from "react";
 // import { ToastContainer, toast } from "react-toastify";
