@@ -142,8 +142,9 @@ function App() {
                             await editUserAPI(editUser.id, newU, token);
                             setUsers(editById(users, editUser.id, newU));
                             toast.success(`Edited`);
-                            setEditUser(false);
+                            setEditUser(null);
                         } catch (er) {
+                            console.log(er);
                             toast.error("Edit failed");
                         }
                     }}
@@ -299,13 +300,20 @@ function deleteById(array: User[] | null, id: string) {
     return array ? array.filter((item) => item.id !== id) : null;
 }
 
-function editById(array: User[], id: string | number, newItem: User) {
-    return array.map((item) => (item.id !== id ? item : newItem));
+function editById(
+    array: User[] | null,
+    id: string | number,
+    newItem: User | null,
+) {
+    if (!newItem) return null;
+    return array
+        ? array.map((item) => (item.id !== id ? item : newItem))
+        : null;
 }
 
 // ================================= API =================================
 
-function editUserAPI(id: string, newItem: User, token: string) {
+function editUserAPI(id: string, newItem: User | null, token: string | null) {
     axios(`${dataAPI}${id}`, {
         method: "PUT",
         headers: {
