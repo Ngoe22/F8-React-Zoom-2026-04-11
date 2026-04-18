@@ -66,7 +66,11 @@ function App() {
                     Authorization: `Bearer ${token}`,
                 },
             })
-                .then((res) => setUsers(res.data))
+                .then((res) => {
+                    console.log(res.data);
+
+                    setUsers(res.data);
+                })
                 .catch(() => toast.error(`Failed`));
         })();
     }, []);
